@@ -1,0 +1,22 @@
+{
+  "Sales": [
+    {
+      "Id": "101",
+      "ProductName": "Logitech M221 Wireless Mouse",
+      "Quantity": "1",
+      "TotalAmount": "1000",
+      "CustName": "Mahmud Sabuj",
+      "SaleDate": "11-Feb-21 12:00:00 AM",
+      "Status": "Pending"
+    },
+    {
+      "Id": "102",
+      "ProductName": "10000 mAh Digital Display Power Bank",
+      "Quantity": "2",
+      "TotalAmount": "5000",
+      "CustName": "Zahidul Hasan",
+      "SaleDate": "10-Feb-21 12:00:00 AM",
+      "Status": "Processing"
+    }
+  ]
+}

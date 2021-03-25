@@ -1,0 +1,40 @@
+{
+  "Products": [
+    {
+      "Id": "101",
+      "Name": "Logitech M221 Wireless Mouse",
+      "Price": "1400",
+      "Upc": "UPC1234666",
+      "Quantity": "10",
+      "Color": "Red",
+      "Category": "Electronics",
+      "IsStock": "In Stock",
+      "Image": "39-53.jpg",
+      "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur"
+    },
+    {
+      "Id": "102",
+      "Name": "10000 mAh Digital Display Power Bank",
+      "Price": "1500",
+      "Upc": "UKDJDDDD",
+      "Quantity": "5",
+      "Color": "Red",
+      "Category": "Electronics",
+      "IsStock": "In Stock",
+      "Image": "45-6.jpg",
+      "Description": "Designed with the iP/type c charging cable, never worry about forgetting to take the cable when you go out. Dual inputs and four outputs, support simultaneous power supply for multiple devices, what you need is only one cable when you go out."
+    },
+    {
+      "Id": "103",
+      "Name": "iPhone 8 64GB ",
+      "Price": "1000",
+      "Upc": "HHSHSHSH",
+      "Quantity": "15",
+      "Color": "Blue",
+      "Category": "Outdoor",
+      "IsStock": "",
+      "Image": "46-17.png",
+      "Description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia"
+    }
+  ]
+}

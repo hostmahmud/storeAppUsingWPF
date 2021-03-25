@@ -1,0 +1,31 @@
+{
+  "Customers": [
+    {
+      "Id": "102",
+      "FullName": "Azman Mollah",
+      "Email": "azman@gmail.com",
+      "Phone": "01938383838",
+      "Address": "Panthapath, Dhanmondi",
+      "City": "Dhaka",
+      "Country": "Bangladesh"
+    },
+    {
+      "Id": "103",
+      "FullName": "Zahidul Hasan",
+      "Email": "zahidul@gmail.com",
+      "Phone": "01838383838",
+      "Address": "Gulistan, Dhaka",
+      "City": "Dhaka",
+      "Country": "Bangladesh"
+    },
+    {
+      "Id": "104",
+      "FullName": "Mahmud Sabuj",
+      "Email": "mahmud@gmail.com",
+      "Phone": "0198383838",
+      "Address": "Green road, Panthopath",
+      "City": "Dhaka",
+      "Country": "Bangladesh"
+    }
+  ]
+}
