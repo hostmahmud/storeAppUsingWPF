@@ -1,2 +1,1 @@
-# storeAppUsingWPF
-Store app using WPF
+# store App Using WPF
