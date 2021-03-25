@@ -1,0 +1,269 @@
+﻿<Window x:Class="StoreApp.Views.AddItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StoreApp.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Height="600" Width="1024" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Thumb}">
+                            <Grid x:Name="Grid">
+                                <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Fill="Transparent" />
+                                <Border x:Name="Rectangle1" CornerRadius="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto"  Background="{TemplateBinding Background}" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="Tag" Value="Horizontal">
+                                    <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
+                                    <Setter TargetName="Rectangle1" Property="Height" Value="7" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--ScrollBars-->
+            <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+                <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+                <Setter Property="Foreground" Value="LightGray" />
+                <Setter Property="Background" Value="DarkGray" />
+                <Setter Property="Width" Value="10" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Grid x:Name="GridRoot" Width="19" Background="{x:Null}">
+                                <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="false">
+                                    <Track.Thumb>
+                                        <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" Style="{DynamicResource ScrollThumbs}" />
+                                    </Track.Thumb>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="false" />
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="false" />
+                                    </Track.DecreaseRepeatButton>
+                                </Track>
+                            </Grid>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                    <Setter Value="{DynamicResource ButtonSelectBrush}" TargetName="Thumb" Property="Background" />
+                                </Trigger>
+                                <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                    <Setter Value="{DynamicResource DarkBrush}" TargetName="Thumb" Property="Background" />
+                                </Trigger>
+
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
+                                </Trigger>
+                                <Trigger Property="Orientation" Value="Horizontal">
+                                    <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                        <Setter.Value>
+                                            <RotateTransform Angle="-90" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                        <Setter.Value>
+                                            <RotateTransform Angle="-90" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Width" Value="Auto" />
+                                    <Setter Property="Height" Value="12" />
+                                    <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
+                                    <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                                    <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <AlternationConverter x:Key="AlternationConverter"/>
+        </ResourceDictionary>
+
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="1" Grid.Row="1" Background="#FFCFCFCF">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="2" HorizontalAlignment="Right">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="7*"/>
+                            </Grid.RowDefinitions>
+                            <materialDesign:PackIcon 
+                                Foreground="Blue"
+                                Panel.ZIndex="999"
+                                Width="30"
+                                Margin="10,21,0,0"
+                                Height="30"
+                                Kind="ArrowBack" VerticalAlignment="Top"/>
+                            <Button 
+                                    Name="btnBack"
+                                    Click="btnBack_Click"
+                                    Content="Products List"
+                                    HorizontalAlignment="Right"
+                                    Width="180"
+                                    Padding="50 0 5 5"
+                                    Foreground="Blue"
+                                    FontSize="20" Margin="0,16,3,0"
+                                    Height="40" VerticalAlignment="Top"/>
+                        </Grid>
+
+                        <Grid HorizontalAlignment="Center" Width="797" Background="#5b0a91" Grid.ColumnSpan="3" Margin="10,76,0,0" Height="49" VerticalAlignment="Top">
+                            <TextBlock 
+                            Text="Add New Product" 
+                            FontSize="20"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Left" VerticalAlignment="Center" Height="34" Margin="10,10,0,5"/>
+                        </Grid>
+                        <Grid Grid.RowSpan="3" HorizontalAlignment="Center" Width="797" Background="White" Margin="10,124,0,10" Grid.ColumnSpan="3">
+                            <Label Content="ID: " Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Left" Height="40" Margin="30,20,0,0" VerticalAlignment="Top" FontSize="18"/>
+                            <TextBox BorderBrush="BlueViolet" x:Name="txtId" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Margin="149,15,0,0" TextWrapping="Wrap" FontSize="17" VerticalAlignment="Top" Width="258"/>
+                            <Label Content="Name: " Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Left" Height="40" Margin="30,50,0,0" VerticalAlignment="Top" FontSize="18"/>
+                            <TextBox BorderBrush="BlueViolet" Name="txtName" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Margin="149,50,0,0" TextWrapping="Wrap" FontSize="17" VerticalAlignment="Top" Width="613"/>
+                            <Label Content="Price: " Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Left" Height="40" Margin="30,85,0,0" VerticalAlignment="Top" FontSize="18"/>
+                            <TextBox BorderBrush="BlueViolet" Name="txtPrice" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Margin="149,85,0,0" TextWrapping="Wrap" FontSize="17" VerticalAlignment="Top" Width="613"/>
+                            <Label Content="UPC/EAN: " Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Left" Height="40" Margin="30,120,0,0" VerticalAlignment="Top" FontSize="18"/>
+                            <TextBox BorderBrush="BlueViolet" Name="txtupc" HorizontalAlignment="Left" FontWeight="Bold" Height="30" Margin="149,120,0,0" TextWrapping="Wrap" FontSize="17" VerticalAlignment="Top" Width="613"/>
+                            <Label Content="Quantity: " Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Left" Height="40" Margin="30,155,0,0" VerticalAlignment="Top" FontSize="18"/>
+                            <TextBox BorderBrush="BlueViolet" Name="txtQuantity"  HorizontalAlignment="Left" FontWeight="Bold" Height="30" Margin="149,155,0,0" TextWrapping="Wrap" FontSize="17" VerticalAlignment="Top" Width="208"/>
+                            <Label Content="Color:" Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Left" Height="40" Margin="30,190,0,0" VerticalAlignment="Top" FontSize="18"/>
+                            <Label Content="Category: " Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Left" Height="40" Margin="30,223,0,0" VerticalAlignment="Top" FontSize="18"/>
+                            <Button Content="Cancel" Name="btnCancel" Background="Transparent" Foreground="Black" FontSize="20" Padding="0 -3 0 0" HorizontalAlignment="Left" Margin="558,382,0,0" VerticalAlignment="Top" Width="92" Height="44" Click="btnCancel_Click"/>
+                            <Button Content="Save" Name="btnSave" FontSize="20" Padding="0 -3 0 0" HorizontalAlignment="Left" Margin="670,382,0,0" VerticalAlignment="Top" Width="92" Height="44" Click="btnSave_Click"/>
+                            <ComboBox BorderBrush="BlueViolet" HorizontalAlignment="Left" Name="cmbColor" Margin="149,190,0,0" VerticalAlignment="Top" Width="208"/>
+                            <ComboBox BorderBrush="BlueViolet" HorizontalAlignment="Left" Name="cmbCategory" Margin="149,223,0,0" VerticalAlignment="Top" Width="208"/>
+                            <Label Content="Stock:" Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Left" Height="40" Margin="34,263,0,0" VerticalAlignment="Top" FontSize="18"/>
+                            <RadioButton Margin="148,274,559,0" VerticalAlignment="Top" GroupName="isStock" Background="Blue" Foreground="Blue" x:Name="inStock">In Stock</RadioButton>
+                            <RadioButton Margin="233,274,474,0" VerticalAlignment="Top" GroupName="isStock" Background="Blue" Foreground="Blue" x:Name="outStock">Out of Stock</RadioButton>
+                            <Button Content="Upload Image" Name="btnUploadImage" Click="btnUploadImage_Click" HorizontalAlignment="Left" Margin="386,178,0,0" VerticalAlignment="Top" Width="133" Height="40"/>
+                            <TextBox Foreground="red" Visibility="Hidden" Text="helo" HorizontalAlignment="Left" Name="txtfilepath" BorderBrush="Transparent" Height="23" Margin="399,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <Image x:Name="itemPic" HorizontalAlignment="Left" Height="166" Margin="550,163,0,0" VerticalAlignment="Top" Width="211" RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform AngleX="1.09"/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="1.228"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <TextBox x:Name="txtDescription" BorderThickness="1" BorderBrush="BlueViolet" HorizontalAlignment="Left" Height="118" Margin="149,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370"/>
+                            <Label Content="Description:" Foreground="BlueViolet" FontWeight="Bold" HorizontalAlignment="Left" Height="40" Margin="32,302,0,0" VerticalAlignment="Top" FontSize="18"/>
+
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="LightGray" Offset="1"/>
+                        <GradientStop Color="#FFE6E6E6"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
+                </Grid.Effect>
+
+                <Grid Background="#FFA46FE4">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0" Width="180">
+                        <Image Width="44"
+                       Source="../Assets/Images/rocket.png" Height="37"/>
+                        <TextBlock Text="POS SOFTWARE"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           FontSize="20"
+                           FontWeight="Medium"
+                           VerticalAlignment="Center"
+                           FontFamily="Assets/Fonts/Dosis" Height="22" Margin="10,0,24,0"/>
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Grid.Row="1">
+                    <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD" Name="btnDashboard" Click="btnDashboard_Click">
+                        <Grid Width="150">
+                            <materialDesign:PackIcon Kind="ViewDashboard" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Center" Text="DASHBOARD" FontFamily="Champagne &amp; Limousines"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="menuTotalSales"  Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD" Click="menuTotalSales_Click">
+                        <Grid Width="150">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="16*"/>
+                            </Grid.RowDefinitions>
+                            <materialDesign:PackIcon Kind="Cart" VerticalAlignment="Center" Margin="0,0,0,1" Grid.RowSpan="2"/>
+                            <TextBlock HorizontalAlignment="Center" Text="SALES" FontFamily="Champagne &amp; Limousines" Margin="56,0,55,0" Grid.RowSpan="2"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="btnMenuCustomers" Click="btnMenuCustomers_Click"  Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD">
+                        <Grid Width="150">
+                            <materialDesign:PackIcon Kind="Users" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Center" Text="CUSTOMERS" FontFamily="Champagne &amp; Limousines"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="menuProducts" Click="menuProducts_Click"  Margin="10" Background="#FF8522fd" BorderBrush="#FF8522BD">
+                        <Grid Width="150">
+                            <materialDesign:PackIcon Kind="TshirtCrew" VerticalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Center" Text="PRODUTS" FontFamily="Champagne &amp; Limousines"/>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+                <Label BorderBrush="Transparent" HorizontalAlignment="Center" Height="23" Margin="0,437,0,0" Grid.Row="1" Content="All rights reserved by Mahmud" VerticalAlignment="Top" Width="190"/>
+            </Grid>
+
+            <Grid x:Name="GridBarraTitulo" Grid.ColumnSpan="2" Background="#FF8522BD" MouseDown="GridBarraTitulo_MouseDown">
+                <materialDesign:PackIcon Kind="Store" Foreground="LightGray" 
+                                     VerticalAlignment="Center"
+                                     Margin="5 0 0 0" Width="23" Height="23"/>
+                <TextBlock Text="POS SOFTWARE" VerticalAlignment="Center"
+                       FontFamily="../Assets/Fonts/#Dosis" FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="LightGray"
+                       Margin="30 0 0 0"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
+                    <Button x:Name="ButtonFechar" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonFechar_Click">
+                        <materialDesign:PackIcon Kind="Power"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

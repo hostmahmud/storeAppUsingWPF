@@ -1,0 +1,143 @@
+﻿<Window x:Class="StoreApp.Views.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="400" WindowStyle="None"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2,2,0" Panel.ZIndex="1">
+            <Button x:Name="CloseApp" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="CloseApp_Click">
+                <materialDesign:PackIcon Kind="Power"/>
+            </Button>
+        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Border CornerRadius="0" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#7be9f6" Offset="0.0"/>
+                        <GradientStop Color="#f083da" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <StackPanel VerticalAlignment="Center">
+                <Image Source="../Assets/Images/rocket.png"
+                       Width="80"
+                       Margin="0 0 0 20"/>
+                <TextBlock Text="POS SOFTWARE"
+                           FontFamily="../Assets/Fonts/#Dosis"
+                           Foreground="#e74c3c"
+                           FontSize="30"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0 -30 0 40"/>
+                <TextBlock Text="Sign Up"
+                           FontWeight="Normal"
+                           FontFamily="helvetica"
+                           FontSize="22"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBox 
+                             x:Name="txtUsername"
+                             FontFamily="../Assets/Fonts/#Dosis"
+                             Text="Username"
+                             FontSize="18"
+                             HorizontalAlignment="Center"
+                             Foreground="blue"
+                            FontWeight="Bold"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="232"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="29"
+                             Padding="2 0 0 0"
+                             Margin="75,0,0,0"/>
+                    <iconPacks:PackIconMaterial Kind="Account" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <PasswordBox 
+                             Name="txtPassword"
+                             FontFamily="../Assets/Fonts/#Dosis"
+                             FontWeight="Light"
+                             FontSize="18"
+                             Password="dfsf"
+                             HorizontalAlignment="Center"
+                             Foreground="Blue"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="32"
+                             Padding="2 0 0 0"
+                             Margin="75,0,0,0"/>
+                    <iconPacks:PackIconMaterial Kind="Onepassword" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,50,0,0" HorizontalAlignment="Center">
+                    <Button x:Name="btnRegister" Click="btnRegister_Click" FontFamily="../Assets/Fonts/#Dosis" Width="100" Height="40" Content="REGISTER" Cursor="Hand"/>
+                </StackPanel>
+
+            </StackPanel>
+            <Button x:Name="alreadyRegistered" Click="alreadyRegistered_Click" FontWeight="Normal" Background="Transparent" BorderBrush="Transparent" Foreground="Black" FontSize="13" Content="Already registered? Login now" HorizontalAlignment="Center" Margin="0 0 0 15" VerticalAlignment="Bottom" Width="210" Grid.Row="1" FontFamily="../Assets/Fonts/#Dosis"/>
+        </Grid>
+        
+        <Grid x:Name="GridBarraTitulo" Background="#5b0a91"
+              Grid.ColumnSpan="2"
+              Height="30"
+              VerticalAlignment="Top"
+              MouseDown="GridBarraTitulo_MouseDown">
+            <materialDesign:PackIcon Kind="Store" Foreground="LightGray" 
+                                     VerticalAlignment="Center"
+                                     Margin="5 0 0 0"/>
+            <TextBlock Text="POS SOFTWARE" VerticalAlignment="Center"
+                       FontFamily="../Assets/Fonts/#Dosis" FontSize="15"
+                       FontWeight="Bold"
+                       Foreground="LightGray"
+                       Margin="25 0 0 0"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="btnBack" Click="btnBack_Click" Content="Back" Foreground="Blue" HorizontalContentAlignment="Right" Padding="10 1 5 2" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="63" Height="20" FontFamily="../Assets/Fonts/#Dosis"/>
+            <iconPacks:PackIconMaterial 
+                Kind="ArrowLeft" 
+                Margin="-85,48,10,0"
+                Width="18"
+                Height="10"
+                Foreground="Blue"        
+				VerticalAlignment="Top" 
+				HorizontalAlignment="Center" 
+				/>
+        </StackPanel>
+    </Grid>
+</Window>
